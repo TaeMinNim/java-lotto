@@ -10,8 +10,7 @@ public class Application {
             mainController.createMyLottos();
             mainController.printMyLottos();
 
-            mainController.inputWinningNumber();
-            mainController.inputBonusNumber();
+            mainController.inputWinningLotto();
             mainController.calculateWinning();
 
             mainController.printResult();

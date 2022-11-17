@@ -9,8 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 
 class LottoTest {
-    private Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-    private Bonus bonus = new Bonus(7, winningLotto);
+    private WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
     @DisplayName("countMatch 메소드 테스트")
     @Nested
@@ -94,7 +93,7 @@ class LottoTest {
         void case1() {
             Lotto myLotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
             boolean result = true;
-            boolean actual = myLotto.hasBonusNumber(bonus);
+            boolean actual = winningLotto.containBonus(myLotto);
 
             assertThat(actual).isEqualTo(result);
         }
@@ -104,7 +103,7 @@ class LottoTest {
         void case2() {
             Lotto myLotto = new Lotto(List.of(8, 9, 10, 11, 12, 13));
             boolean result = false;
-            boolean actual = myLotto.hasBonusNumber(bonus);
+            boolean actual = winningLotto.containBonus(myLotto);
 
             assertThat(actual).isEqualTo(result);
         }

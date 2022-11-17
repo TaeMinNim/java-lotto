@@ -13,8 +13,7 @@ public class MainController {
     private Cash cash;
     private int lottoNumber;
     private List<Lotto> myLottos;
-    private Lotto winningLotto;
-    private Bonus bonus;
+    private WinningLotto winningLotto;
     private HashMap<Rank, Integer> point;
     private double profit;
 
@@ -51,8 +50,14 @@ public class MainController {
         outputView.printMyLottoInfo(myLottos);
     }
 
-    public void inputWinningNumber() throws IllegalArgumentException {
+    public void inputWinningLotto() throws IllegalArgumentException {
         System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumber = inputWinningNumber();
+        int bonusNumber = inputBonusNumber();
+        winningLotto = new WinningLotto(winningNumber, bonusNumber);
+    }
+
+    private List<Integer> inputWinningNumber() throws IllegalArgumentException{
         String input = Console.readLine();
         String[] numbers = input.split(",");
 
@@ -65,10 +70,10 @@ public class MainController {
             }
         }
 
-        winningLotto = new Lotto(winningNumber);
+        return winningNumber;
     }
 
-    public void inputBonusNumber() throws IllegalArgumentException {
+    private int inputBonusNumber() throws IllegalArgumentException {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
 
@@ -79,14 +84,14 @@ public class MainController {
             throw new IllegalArgumentException("입력 값이 올바르지 않습니다.");
         }
 
-        bonus = new Bonus(bonusNumber, winningLotto);
+        return bonusNumber;
     }
 
     public void calculateWinning() {
         int total = 0;
         for (Lotto myLotto : myLottos) {
-            Match match = new Match(myLotto.countMatch(winningLotto));
-            boolean hasBonus = myLotto.hasBonusNumber(bonus);
+            Match match = new Match(winningLotto.countMatch(myLotto));
+            boolean hasBonus = winningLotto.containBonus(myLotto);
             Rank rank = Rank.getMyRank(match, hasBonus);
             total += rank.getPrize();
             int p = point.get(rank);
