@@ -31,7 +31,6 @@ public class MainController {
     }
 
     public void inputCash() throws IllegalArgumentException {
-        System.out.println("구입 금액을 입력해주세요.");
         String input = Console.readLine();
         int integer;
         try {
@@ -39,6 +38,7 @@ public class MainController {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("입력 값이 올바르지 않습니다.");
         }
+
         cash = new Cash(integer);
     }
 
@@ -54,7 +54,6 @@ public class MainController {
     }
 
     public void inputWinningLotto() throws IllegalArgumentException {
-        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumber = inputWinningNumber();
         int bonusNumber = inputBonusNumber();
         winningLotto = new WinningLotto(winningNumber, bonusNumber);
@@ -77,7 +76,6 @@ public class MainController {
     }
 
     private int inputBonusNumber() throws IllegalArgumentException {
-        System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         int bonusNumber;
