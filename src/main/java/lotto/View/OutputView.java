@@ -5,7 +5,6 @@ import lotto.Model.MyLotto;
 import lotto.Rank;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class OutputView {
     public void printMyLottoInfo(MyLotto myLotto) {

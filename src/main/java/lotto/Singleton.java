@@ -14,9 +14,10 @@ public class Singleton {
     public MyLotto myLotto;
     public WinningLotto winningLotto;
 
-    private Singleton(){}
+    private Singleton() {
+    }
 
-    public static Singleton getInstance(){
+    public static Singleton getInstance() {
         return instance;
     }
 }

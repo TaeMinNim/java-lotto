@@ -40,7 +40,7 @@ public enum Rank {
         return this.prize;
     }
 
-    private boolean isSameMatch(int match){
+    private boolean isSameMatch(int match) {
         return this.match == match;
     }
 

@@ -2,10 +2,10 @@ package lotto.Model;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto{
+public class WinningLotto extends Lotto {
     private int bonus;
 
-    public WinningLotto(List<Integer> numbers, int bonus){
+    public WinningLotto(List<Integer> numbers, int bonus) {
         super(numbers);
         isValidData(bonus);
         this.bonus = bonus;

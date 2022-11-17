@@ -10,7 +10,7 @@ public class MyLotto {
     private List<Lotto> myLotto;
     private HashMap<Rank, Integer> point;
 
-    public MyLotto(List<Lotto> myLotto){
+    public MyLotto(List<Lotto> myLotto) {
         this.myLotto = myLotto;
         point = new HashMap<Rank, Integer>();
         point.put(Rank.FIRST, 0);
@@ -21,7 +21,7 @@ public class MyLotto {
         point.put(Rank.LAST, 0);
     }
 
-    public HashMap<Rank, Integer> checkWinning(WinningLotto winningLotto){
+    public HashMap<Rank, Integer> checkWinning(WinningLotto winningLotto) {
         for (Lotto myLotto : myLotto) {
             int match = winningLotto.countMatch(myLotto);
             boolean hasBonus = winningLotto.containBonus(myLotto);
@@ -33,10 +33,10 @@ public class MyLotto {
         return point;
     }
 
-    public int calculateTotalPrize(HashMap<Rank, Integer> point){
+    public int calculateTotalPrize(HashMap<Rank, Integer> point) {
         Set<Rank> keys = point.keySet();
         int totalPrize = 0;
-        for(Rank rank : keys){
+        for (Rank rank : keys) {
             int prize = rank.getPrize();
             int count = point.get(rank);
             totalPrize += prize * count;
@@ -45,11 +45,11 @@ public class MyLotto {
         return totalPrize;
     }
 
-    public int quantity(){
+    public int quantity() {
         return myLotto.size();
     }
 
-    public List<Lotto> getMyLotto(){
+    public List<Lotto> getMyLotto() {
         return myLotto;
     }
 }

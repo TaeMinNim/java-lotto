@@ -4,14 +4,18 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.Cash;
 import lotto.Model.WinningLotto;
 import lotto.Singleton;
+import lotto.View.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputController {
     private Singleton storage = Singleton.getInstance();
+    private InputView inputView = new InputView();
 
     public void inputCash() throws IllegalArgumentException {
+        inputView.inputCash();
+        ;
         String input = Console.readLine();
         int integer;
         try {
@@ -29,7 +33,8 @@ public class InputController {
         storage.winningLotto = new WinningLotto(winningNumber, bonusNumber);
     }
 
-    private List<Integer> inputWinningNumber() throws IllegalArgumentException{
+    private List<Integer> inputWinningNumber() throws IllegalArgumentException {
+        inputView.inputWinningNumber();
         String input = Console.readLine();
         String[] numbers = input.split(",");
 
@@ -46,6 +51,7 @@ public class InputController {
     }
 
     private int inputBonusNumber() throws IllegalArgumentException {
+        inputView.inputBonusNumber();
         String input = Console.readLine();
 
         int bonusNumber;

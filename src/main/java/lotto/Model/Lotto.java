@@ -3,8 +3,6 @@ package lotto.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-/* 로또 번호의 Type으로 사용되는 클래스입니다 */
-
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -31,8 +29,8 @@ public class Lotto {
 
     public int countMatch(Lotto other) {
         int match = 0;
-        for(int number : other.numbers){
-            if(numbers.contains(number)){
+        for (int number : other.numbers) {
+            if (numbers.contains(number)) {
                 match++;
             }
         }
@@ -40,11 +38,11 @@ public class Lotto {
         return match;
     }
 
-    public boolean contain(int number){
+    public boolean contain(int number) {
         return numbers.contains(number);
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 }
