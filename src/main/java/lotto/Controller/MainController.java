@@ -6,6 +6,7 @@ import lotto.Model.Cash;
 import lotto.Model.Lotto;
 import lotto.Model.LottoGeneratorModel;
 import lotto.Model.WinningLotto;
+import lotto.View.InputView;
 import lotto.View.OutputView;
 
 import java.util.ArrayList;
@@ -19,6 +20,10 @@ public class MainController {
     private WinningLotto winningLotto;
     private HashMap<Rank, Integer> point;
     private double profit;
+
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
+    private LottoGeneratorModel lottoGenerator = new LottoGeneratorModel();
 
     public MainController() {
         point = new HashMap<Rank, Integer>();
@@ -44,12 +49,10 @@ public class MainController {
 
     public void createMyLottos() {
         lottoNumber = cash.calculateLottoCount();
-        LottoGeneratorModel lottoGenerator = new LottoGeneratorModel();
         myLottos = lottoGenerator.createMyLottos(lottoNumber);
     }
 
     public void printMyLottos() {
-        OutputView outputView = new OutputView();
         outputView.printMyLottoInfo(myLottos);
     }
 
@@ -103,7 +106,6 @@ public class MainController {
     }
 
     public void printResult() {
-        OutputView outputView = new OutputView();
         outputView.printResult(point, profit);
     }
 }
