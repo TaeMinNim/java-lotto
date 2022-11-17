@@ -3,6 +3,7 @@ package lotto;
 /* 구매 금액의 Type으로 사용되는 클래스입니다 */
 
 public class Cash {
+    private final static int MIN_UNIT = 1000;
     private int cash;
 
     public Cash(int cash) {
@@ -21,7 +22,14 @@ public class Cash {
         }
     }
 
-    public int getCash() {
-        return cash;
+    public int calculateLottoCount() {
+        return cash / MIN_UNIT;
+    }
+
+    public double calculateProfit(int totalPrize) {
+        double profit = ((double) totalPrize / cash) * 100 * 10;
+        profit = Math.round(profit);
+
+        return profit / 10;
     }
 }

@@ -2,7 +2,6 @@ package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.*;
-import lotto.Model.CalculatorModel;
 import lotto.Model.LottoGeneratorModel;
 import lotto.View.OutputView;
 
@@ -42,14 +41,9 @@ public class MainController {
     }
 
     public void createMyLottos() {
-        lottoNumber = countLottoNumber(cash);
+        lottoNumber = cash.calculateLottoCount();
         LottoGeneratorModel lottoGenerator = new LottoGeneratorModel();
         myLottos = lottoGenerator.createMyLottos(lottoNumber);
-    }
-
-    private int countLottoNumber(Cash cash) {
-        CalculatorModel calculator = new CalculatorModel();
-        return calculator.countLottoNumber(cash);
     }
 
     public void printMyLottos() {
@@ -89,7 +83,6 @@ public class MainController {
     }
 
     public void calculateWinning() {
-        CalculatorModel calculator = new CalculatorModel();
         int total = 0;
         for (Lotto myLotto : myLottos) {
             Match match = new Match(myLotto.countMatch(winningLotto));
@@ -100,7 +93,7 @@ public class MainController {
             point.replace(rank, p + 1);
         }
 
-        profit = calculator.getProfit(total, cash.getCash());
+        profit = cash.calculateProfit(total);
     }
 
     public void printResult() {
