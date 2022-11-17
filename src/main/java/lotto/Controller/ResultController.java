@@ -1,27 +1,21 @@
 package lotto.Controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.*;
-import lotto.Model.Cash;
 import lotto.Model.Lotto;
-import lotto.Model.LottoGeneratorModel;
-import lotto.Model.WinningLotto;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class MainController {
+public class ResultController {
     private HashMap<Rank, Integer> point;
     private double profit;
 
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private LottoGeneratorModel lottoGenerator = new LottoGeneratorModel();
     private Singleton storage = Singleton.getInstance();
-    public MainController() {
+
+    public ResultController() {
         point = new HashMap<Rank, Integer>();
         point.put(Rank.FIRST, 0);
         point.put(Rank.SECOND, 0);
@@ -30,10 +24,6 @@ public class MainController {
         point.put(Rank.FIFTH, 0);
         point.put(Rank.LAST, 0);
     }
-
-
-
-
 
     public void calculateWinning() {
         int total = 0;
