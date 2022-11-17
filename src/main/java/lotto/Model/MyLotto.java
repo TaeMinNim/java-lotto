@@ -4,6 +4,7 @@ import lotto.Rank;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class MyLotto {
     private List<Lotto> myLotto;
@@ -30,6 +31,18 @@ public class MyLotto {
         }
 
         return point;
+    }
+
+    public int calculateTotalPrize(HashMap<Rank, Integer> point){
+        Set<Rank> keys = point.keySet();
+        int totalPrize = 0;
+        for(Rank rank : keys){
+            int prize = rank.getPrize();
+            int count = point.get(rank);
+            totalPrize += prize * count;
+        }
+
+        return totalPrize;
     }
 
     public int quantity(){
