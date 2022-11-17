@@ -13,7 +13,7 @@ class RankTest {
         @DisplayName("1등")
         @Test
         void case1() {
-            Match match = new Match(6);
+            int match = 6;
             boolean bonus = false;
 
             Rank actual = Rank.getMyRank(match, bonus);
@@ -25,7 +25,7 @@ class RankTest {
         @DisplayName("2등")
         @Test
         void case2() {
-            Match match = new Match(5);
+            int match = 5;
             boolean bonus = true;
 
             Rank actual = Rank.getMyRank(match, bonus);
@@ -37,7 +37,7 @@ class RankTest {
         @DisplayName("3등")
         @Test
         void case3() {
-            Match match = new Match(5);
+            int match = 5;
             boolean bonus = false;
 
             Rank actual = Rank.getMyRank(match, bonus);
@@ -49,7 +49,7 @@ class RankTest {
         @DisplayName("4등")
         @Test
         void case4() {
-            Match match = new Match(4);
+            int match = 4;
             boolean bonus = false;
 
             Rank actual = Rank.getMyRank(match, bonus);
@@ -61,7 +61,7 @@ class RankTest {
         @DisplayName("5등")
         @Test
         void case5() {
-            Match match = new Match(3);
+            int match = 3;
             boolean bonus = false;
 
             Rank actual = Rank.getMyRank(match, bonus);
@@ -73,7 +73,7 @@ class RankTest {
         @DisplayName("꽝")
         @Test
         void case6() {
-            Match match = new Match(2);
+            int match = 2;
             boolean bonus = true;
 
             Rank actual = Rank.getMyRank(match, bonus);

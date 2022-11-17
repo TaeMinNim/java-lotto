@@ -90,7 +90,7 @@ public class MainController {
     public void calculateWinning() {
         int total = 0;
         for (Lotto myLotto : myLottos) {
-            Match match = new Match(winningLotto.countMatch(myLotto));
+            int match = winningLotto.countMatch(myLotto);
             boolean hasBonus = winningLotto.containBonus(myLotto);
             Rank rank = Rank.getMyRank(match, hasBonus);
             total += rank.getPrize();
