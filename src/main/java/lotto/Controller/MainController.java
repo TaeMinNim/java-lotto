@@ -32,14 +32,6 @@ public class MainController {
     }
 
 
-    public void createMyLottos() {
-        int lottoNumber = storage.cash.calculateLottoCount();
-        storage.myLotto = lottoGenerator.createMyLottos(lottoNumber);
-    }
-
-    public void printMyLottos() {
-        outputView.printMyLottoInfo(storage.myLotto);
-    }
 
 
 
