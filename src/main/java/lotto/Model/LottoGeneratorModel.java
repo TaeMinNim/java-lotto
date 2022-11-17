@@ -6,13 +6,13 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGeneratorModel {
-    public List<Lotto> createMyLottos(int lottoNumber) {
-        List<Lotto> myLottos = new ArrayList<>();
+    public MyLotto createMyLotto(int lottoNumber) {
+        List<Lotto> myLotto = new ArrayList<>();
         for (int i = 0; i < lottoNumber; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            myLottos.add(lotto);
+            myLotto.add(lotto);
         }
 
-        return myLottos;
+        return new MyLotto(myLotto);
     }
 }

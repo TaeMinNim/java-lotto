@@ -11,7 +11,7 @@ public class CreateLottoController {
 
     public void createMyLotto() {
         int lottoNumber = storage.cash.calculateLottoCount();
-        storage.myLotto = lottoGenerator.createMyLottos(lottoNumber);
+        storage.myLotto = lottoGenerator.createMyLotto(lottoNumber);
         outputView.printMyLottoInfo(storage.myLotto);
     }
 }

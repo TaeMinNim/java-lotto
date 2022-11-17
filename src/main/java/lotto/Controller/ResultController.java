@@ -16,25 +16,11 @@ public class ResultController {
     private Singleton storage = Singleton.getInstance();
 
     public ResultController() {
-        point = new HashMap<Rank, Integer>();
-        point.put(Rank.FIRST, 0);
-        point.put(Rank.SECOND, 0);
-        point.put(Rank.THIRD, 0);
-        point.put(Rank.FOURTH, 0);
-        point.put(Rank.FIFTH, 0);
-        point.put(Rank.LAST, 0);
+
     }
 
     public void calculateWinning() {
         int total = 0;
-        for (Lotto myLotto : storage.myLotto) {
-            int match = storage.winningLotto.countMatch(myLotto);
-            boolean hasBonus = storage.winningLotto.containBonus(myLotto);
-            Rank rank = Rank.getMyRank(match, hasBonus);
-            total += rank.getPrize();
-            int p = point.get(rank);
-            point.replace(rank, p + 1);
-        }
 
         profit = storage.cash.calculateProfit(total);
     }

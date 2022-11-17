@@ -1,16 +1,17 @@
 package lotto.View;
 
 import lotto.Model.Lotto;
+import lotto.Model.MyLotto;
 import lotto.Rank;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
-    public void printMyLottoInfo(List<Lotto> myLottos) {
-        int quantity = myLottos.size();
+    public void printMyLottoInfo(MyLotto myLotto) {
+        int quantity = myLotto.quantity();
         System.out.println(quantity + "개를 구매했습니다.");
-        for (Lotto lotto : myLottos) {
+        for (Lotto lotto : myLotto.getMyLotto()) {
             System.out.println(lotto.getNumbers());
         }
     }
