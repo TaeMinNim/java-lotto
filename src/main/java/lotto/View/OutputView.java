@@ -1,6 +1,6 @@
 package lotto.View;
 
-import lotto.Lotto;
+import lotto.Model.Lotto;
 import lotto.Rank;
 
 import java.util.HashMap;

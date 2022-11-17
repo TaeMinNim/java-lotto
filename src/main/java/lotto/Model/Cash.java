@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model;
 
 /* 구매 금액의 Type으로 사용되는 클래스입니다 */
 

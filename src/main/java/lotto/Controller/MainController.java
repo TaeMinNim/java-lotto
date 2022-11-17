@@ -2,7 +2,10 @@ package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.*;
+import lotto.Model.Cash;
+import lotto.Model.Lotto;
 import lotto.Model.LottoGeneratorModel;
+import lotto.Model.WinningLotto;
 import lotto.View.OutputView;
 
 import java.util.ArrayList;
