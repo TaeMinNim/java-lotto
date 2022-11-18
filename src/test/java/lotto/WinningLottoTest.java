@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
-class LottoTest {
+class WinningLottoTest {
     private WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
     @DisplayName("countMatch 메소드 테스트")
@@ -87,9 +87,9 @@ class LottoTest {
         }
     }
 
-    @DisplayName("hasBonusNumber 메소드 테스트")
+    @DisplayName("containBonus 메소드 테스트")
     @Nested
-    class hasBonusNumberTest {
+    class containBonusTest {
         @DisplayName("매치하는 경우")
         @Test
         void case1() {
