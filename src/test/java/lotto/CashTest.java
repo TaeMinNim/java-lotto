@@ -3,8 +3,8 @@ package lotto;
 import lotto.Model.Cash;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -14,63 +14,32 @@ class CashTest {
     @Nested
     class isValidDataTest {
         @DisplayName("유효하지 않은 경우")
-        @Nested
-        class notValid {
-            @ParameterizedTest
-            @ValueSource(ints = {-1000, 2500, 50})
-            void notValid(int cash) {
-                assertThatThrownBy(() -> {
-                    new Cash(cash);
-                })
-                        .isInstanceOf(IllegalArgumentException.class);
-            }
+        @ParameterizedTest(name="[{index}] cash = {0}")
+        @ValueSource(ints = {-1000, 2500, 50})
+        void notValid(int cash) {
+            assertThatThrownBy(() -> {
+                new Cash(cash);
+            })
+                    .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("유효한 경우")
-        @Nested
-        class valid {
-            @ParameterizedTest
-            @ValueSource(ints = {1000, 3000, 5000})
-            void valid(int cash) {
-                assertThat(new Cash(cash))
-                        .isInstanceOf(Cash.class);
-            }
+        @ParameterizedTest(name="[{index}] cash = {0}")
+        @ValueSource(ints = {1000, 3000, 5000})
+        void valid(int cash) {
+            assertThat(new Cash(cash))
+                    .isInstanceOf(Cash.class);
         }
     }
 
     @DisplayName("calculateProfit 메소드 테스트")
     @Nested
     class calculateProfitTest {
-        @DisplayName("나누어 떨어지는 경우")
-        @Test
-        void case1() {
-            int total = 5000;
-            Cash cash = new Cash(8000);
-
+        @ParameterizedTest(name="[{index}] money={0}/total={1}/result={2}")
+        @CsvSource(value = { "8000:5000:62.5", "30000:10000:33.3", "9000:5000:55.6"}, delimiter = ':')
+        void divided(int money, int total, double result) {
+            Cash cash = new Cash(money);
             double actual = cash.calculateProfit(total);
-            double result = 62.5;
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("버리는 경우")
-        @Test
-        void case2() {
-            int total = 10000;
-            Cash cash = new Cash(30000);
-
-            double actual = cash.calculateProfit(total);
-            double result = 33.3;
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("올리는 경우")
-        @Test
-        void case3() {
-            int total = 5000;
-            Cash cash = new Cash(9000);
-
-            double actual = cash.calculateProfit(total);
-            double result = 55.6;
             assertThat(actual).isEqualTo(result);
         }
     }
@@ -78,23 +47,11 @@ class CashTest {
     @DisplayName("calculateLottoNumber 메소드 테스트")
     @Nested
     class countLottoNumberTest {
-        @DisplayName("8000원")
-        @Test
-        void case1() {
-            Cash cash = new Cash(8000);
-
+        @ParameterizedTest(name="[{index}] money={0}/result={1}")
+        @CsvSource(value={ "8000:8", "14000:14" }, delimiter=':')
+        void success(int money, int result) {
+            Cash cash = new Cash(money);
             int actual = cash.calculateLottoCount();
-            int result = 8;
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("14000원")
-        @Test
-        void case2() {
-            Cash cash = new Cash(14000);
-
-            int actual = cash.calculateLottoCount();
-            int result = 14;
             assertThat(actual).isEqualTo(result);
         }
     }
