@@ -1,85 +1,33 @@
 package lotto;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class RankTest {
+    @ParameterizedTest(name="[{index}] {0}")
+    @MethodSource("matchAndRank")
     @DisplayName("getMyRank 메소드 테스트")
-    @Nested
-    class getMyRankTest {
-        @DisplayName("1등")
-        @Test
-        void case1() {
-            int match = 6;
-            boolean bonus = false;
+    void getRankTest(Rank rank, int match, boolean bonus) {
+        Rank actual = Rank.getMyRank(match, bonus);
+        assertThat(actual).isEqualTo(rank);
+    }
 
-            Rank actual = Rank.getMyRank(match, bonus);
-            Rank result = Rank.FIRST;
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("2등")
-        @Test
-        void case2() {
-            int match = 5;
-            boolean bonus = true;
-
-            Rank actual = Rank.getMyRank(match, bonus);
-            Rank result = Rank.SECOND;
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("3등")
-        @Test
-        void case3() {
-            int match = 5;
-            boolean bonus = false;
-
-            Rank actual = Rank.getMyRank(match, bonus);
-            Rank result = Rank.THIRD;
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("4등")
-        @Test
-        void case4() {
-            int match = 4;
-            boolean bonus = false;
-
-            Rank actual = Rank.getMyRank(match, bonus);
-            Rank result = Rank.FOURTH;
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("5등")
-        @Test
-        void case5() {
-            int match = 3;
-            boolean bonus = false;
-
-            Rank actual = Rank.getMyRank(match, bonus);
-            Rank result = Rank.FIFTH;
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("꽝")
-        @Test
-        void case6() {
-            int match = 2;
-            boolean bonus = true;
-
-            Rank actual = Rank.getMyRank(match, bonus);
-            Rank result = Rank.LAST;
-
-            assertThat(actual).isEqualTo(result);
-        }
+    static Stream<Arguments> matchAndRank() {
+        return Stream.of(
+                arguments(Rank.FIRST, 6, false),
+                arguments(Rank.SECOND, 5, true),
+                arguments(Rank.THIRD, 5, false),
+                arguments(Rank.FOURTH, 4, false),
+                arguments(Rank.FIFTH, 3, false),
+                arguments(Rank.LAST, 2, true)
+        );
     }
 }
+
