@@ -4,11 +4,14 @@ import lotto.Model.Lotto;
 import lotto.Model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 class WinningLottoTest {
     private WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
@@ -16,98 +19,23 @@ class WinningLottoTest {
     @DisplayName("countMatch 메소드 테스트")
     @Nested
     class countMatch {
-        @DisplayName("0개 매치")
-        @Test
-        void case1() {
-            Lotto myLotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-            int result = 0;
+        @ParameterizedTest(name="[{index}] {1}개 매치")
+        @MethodSource("lotto.WinningLottoTest#generateData")
+        void countMatch(List<Integer> numbers, int result) {
+            Lotto myLotto = new Lotto(numbers);
             int actual = winningLotto.countMatch(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("1개 매치")
-        @Test
-        void case2() {
-            Lotto myLotto = new Lotto(List.of(6, 7, 8, 9, 10, 11));
-            int result = 1;
-            int actual = winningLotto.countMatch(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("2개 매치")
-        @Test
-        void case3() {
-            Lotto myLotto = new Lotto(List.of(5, 6, 7, 8, 9, 10));
-            int result = 2;
-            int actual = winningLotto.countMatch(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("3개 매치")
-        @Test
-        void case4() {
-            Lotto myLotto = new Lotto(List.of(4, 5, 6, 7, 8, 9));
-            int result = 3;
-            int actual = winningLotto.countMatch(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("4개 매치")
-        @Test
-        void case5() {
-            Lotto myLotto = new Lotto(List.of(3, 4, 5, 6, 7, 8));
-            int result = 4;
-            int actual = winningLotto.countMatch(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("5개 매치")
-        @Test
-        void case6() {
-            Lotto myLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
-            int result = 5;
-            int actual = winningLotto.countMatch(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("6개 매치")
-        @Test
-        void case7() {
-            Lotto myLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            int result = 6;
-            int actual = winningLotto.countMatch(myLotto);
-
             assertThat(actual).isEqualTo(result);
         }
     }
-
-    @DisplayName("containBonus 메소드 테스트")
-    @Nested
-    class containBonusTest {
-        @DisplayName("매치하는 경우")
-        @Test
-        void case1() {
-            Lotto myLotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-            boolean result = true;
-            boolean actual = winningLotto.containBonus(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
-
-        @DisplayName("매치하지 않는 경우")
-        @Test
-        void case2() {
-            Lotto myLotto = new Lotto(List.of(8, 9, 10, 11, 12, 13));
-            boolean result = false;
-            boolean actual = winningLotto.containBonus(myLotto);
-
-            assertThat(actual).isEqualTo(result);
-        }
+    static Stream<Arguments> generateData(){
+        return Stream.of(
+                Arguments.of(List.of(7, 8, 9, 10, 11, 12), 0),
+                Arguments.of(List.of(6, 7, 8, 9, 10, 11), 1),
+                Arguments.of(List.of(5, 6, 7, 8, 9, 10), 2),
+                Arguments.of(List.of(4, 5, 6, 7, 8, 9), 3),
+                Arguments.of(List.of(3, 4, 5, 6, 7, 8), 4),
+                Arguments.of(List.of(2, 3, 4, 5, 6, 7), 5),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6)
+        );
     }
 }
