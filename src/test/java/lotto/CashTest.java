@@ -4,10 +4,40 @@ import lotto.Model.Cash;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class CashTest {
+    @DisplayName("데이터 유효 테스트")
+    @Nested
+    class isValidDataTest {
+        @DisplayName("유효하지 않은 경우")
+        @Nested
+        class notValid {
+            @ParameterizedTest
+            @ValueSource(ints = {-1000, 2500, 50})
+            void notValid(int cash) {
+                assertThatThrownBy(() -> {
+                    new Cash(cash);
+                })
+                        .isInstanceOf(IllegalArgumentException.class);
+            }
+        }
+
+        @DisplayName("유효한 경우")
+        @Nested
+        class valid {
+            @ParameterizedTest
+            @ValueSource(ints = {1000, 3000, 5000})
+            void valid(int cash) {
+                assertThat(new Cash(cash))
+                        .isInstanceOf(Cash.class);
+            }
+        }
+    }
+
     @DisplayName("calculateProfit 메소드 테스트")
     @Nested
     class calculateProfitTest {
