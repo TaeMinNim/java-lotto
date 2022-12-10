@@ -16,5 +16,14 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int countMatch(Lotto other){
+        int count = 0;
+        for(int number: other.numbers){
+            if(this.numbers.contains(number)){
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
