@@ -26,4 +26,8 @@ public class Lotto {
 
         return count;
     }
+
+    public boolean hasBonus(int bonus){
+        return numbers.contains(bonus);
+    }
 }
