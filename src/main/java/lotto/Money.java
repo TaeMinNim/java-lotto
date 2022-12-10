@@ -23,4 +23,8 @@ public class Money {
             throw new IllegalArgumentException("1000원 단위의 값을 입력해주세요.");
         }
     }
+
+    public int count(){
+        return money / UNIT;
+    }
 }
