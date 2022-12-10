@@ -8,4 +8,16 @@ public class LottoList {
     public LottoList(List<Lotto> lottoList){
         this.lottoList = lottoList;
     }
+
+    public WinPoint checkWin(Lotto winningLotto, int bonus){
+        WinPoint winPoint = new WinPoint();
+        for(Lotto lotto: lottoList){
+            int match = winningLotto.countMatch(lotto);
+            boolean hasBonus = lotto.hasBonus(bonus);
+            Rank rank = Rank.checkRank(match, hasBonus);
+            winPoint.increase(rank);
+        }
+
+        return winPoint;
+    }
 }
