@@ -20,4 +20,8 @@ public class LottoList {
 
         return winPoint;
     }
+
+    public List<Lotto> getLottoList(){
+        return lottoList;
+    }
 }
