@@ -27,4 +27,9 @@ public class Money {
     public int count(){
         return money / UNIT;
     }
+
+    public float calculateProfit(WinPoint winPoint){
+        int totalPrize = winPoint.getTotalPrize();
+        return (float)totalPrize / money;
+    }
 }

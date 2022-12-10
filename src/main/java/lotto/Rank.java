@@ -30,4 +30,8 @@ public enum Rank {
 
         return LAST;
     }
+
+    public int getPrize(){
+        return prize;
+    }
 }
