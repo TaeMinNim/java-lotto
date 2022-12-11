@@ -31,4 +31,8 @@ public class WinPoint {
 
         return totalPrize;
     }
+
+    public int getValue(Rank rank){
+        return winPoint.get(rank);
+    }
 }
