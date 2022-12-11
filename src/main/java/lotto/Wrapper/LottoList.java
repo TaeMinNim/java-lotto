@@ -1,4 +1,7 @@
-package lotto;
+package lotto.Wrapper;
+
+import lotto.Lotto;
+import lotto.Rank;
 
 import java.util.List;
 

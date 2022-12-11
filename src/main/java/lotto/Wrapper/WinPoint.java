@@ -1,4 +1,6 @@
-package lotto;
+package lotto.Wrapper;
+
+import lotto.Rank;
 
 import java.util.HashMap;
 import java.util.Map;

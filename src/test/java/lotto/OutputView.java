@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.Wrapper.LottoList;
+
 public class OutputView {
     public void printLotto(LottoList lottoList){
         int count = lottoList.getLottoList().size();

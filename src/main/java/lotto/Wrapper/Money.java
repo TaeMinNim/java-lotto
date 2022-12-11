@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Wrapper;
 
 public class Money {
     private final static int UNIT = 1000;
