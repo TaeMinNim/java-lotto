@@ -11,7 +11,8 @@ public class Numbers {
         try {
             String[] strings = string.split(",");
             for (int i = 0; i < strings.length; i++) {
-                numbers.add(Integer.parseInt(strings[i]));
+                Num num = new Num(Integer.parseInt(strings[i]));
+                numbers.add(num.getNum());
             }
 
         } catch (Exception e) {
