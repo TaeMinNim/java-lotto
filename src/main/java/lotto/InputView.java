@@ -2,6 +2,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Util.Numbers;
 import lotto.Wrapper.Money;
+import lotto.Util.Number;
 
 public class InputView {
     public Money inputMoney(){
@@ -16,5 +17,12 @@ public class InputView {
         Numbers numbers = new Numbers(string);
 
         return new Lotto(numbers.getNumbers());
+    }
+
+    public Number inputBonus(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String string = Console.readLine();
+
+        return new Number(string);
     }
 }
