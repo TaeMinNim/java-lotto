@@ -3,9 +3,9 @@ package lotto.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumbersInput {
+public class Numbers {
     private List<Integer> numbers;
-    public NumbersInput(String string) {
+    public Numbers(String string) {
         numbers = trans(string);
     }
 
@@ -14,7 +14,7 @@ public class NumbersInput {
         try {
             String[] strings = string.split(",");
             for (int i = 0; i < strings.length; i++) {
-                NumberInput number = new NumberInput(strings[i]);
+                Number number = new Number(strings[i]);
                 numbers.add(number.getNumber());
             }
 

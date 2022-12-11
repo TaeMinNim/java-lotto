@@ -1,12 +1,12 @@
 package lotto.Util;
 
-public class NumberInput {
+public class Number {
     private final static int MIN = 1;
     private final static int MAX = 45;
 
     private final int number;
 
-    public NumberInput(String numberString){
+    public Number(String numberString){
         int number = trans(numberString);
         validData(number);
         this.number = number;
